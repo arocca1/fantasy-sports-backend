@@ -1,4 +1,4 @@
-package athlete;
+package fantasyuser;
 
 import java.util.Date;
 
@@ -8,22 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "REAL_LEAGUES" )
-public class RealLeague {
-	public static long NO_INDIVIDUAL_LEAGUE = -1;
+@Table( name = "USERS" )
+public class User {
 	@Id
 	@GeneratedValue
-	private int id;
+	private long id;
 	private String name;
+	private String realName;
 	private Date createdAt;
-	private long sportId;
 
-	public RealLeague() { }
-
-	public RealLeague(String name, long sportId) {
-		this.name = name;
-		this.sportId = sportId;
-	}
+	public User() { }
 
 	public String getName() {
 		return name;
@@ -33,15 +27,15 @@ public class RealLeague {
 		this.name = name;
 	}
 
-	public long getSportId() {
-		return sportId;
+	public String getRealName() {
+		return realName;
 	}
 
-	public void setSportId(long sportId) {
-		this.sportId = sportId;
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
