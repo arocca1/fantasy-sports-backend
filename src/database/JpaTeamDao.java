@@ -15,7 +15,7 @@ public class JpaTeamDao extends Dao<Team> {
 
     @Override
     public List<Team> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM teams e");
+        Query query = entityManager.createQuery("SELECT e FROM Team e");
         return query.getResultList();
     }
 

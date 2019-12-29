@@ -7,9 +7,16 @@ import java.util.function.Consumer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
 
 public abstract class Dao<T> {
+	@PersistenceContext
 	protected EntityManager entityManager;
+
+	public Dao() {
+		entityManager = Persistence.createEntityManagerFactory("com.arocca1.fantasy_sports_backend").createEntityManager();
+	}
 
 	public Optional<T> get(long id) {
 		return Optional.empty();

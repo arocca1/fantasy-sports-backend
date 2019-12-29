@@ -15,7 +15,7 @@ public class JpaSportDao extends Dao<Sport> {
 
     @Override
     public List<Sport> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM sports e");
+        Query query = entityManager.createQuery("SELECT e FROM Sport e");
         return query.getResultList();
     }
 

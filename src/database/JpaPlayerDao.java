@@ -15,7 +15,7 @@ public class JpaPlayerDao extends Dao<Player> {
 
     @Override
     public List<Player> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM players e");
+        Query query = entityManager.createQuery("SELECT e FROM Player e");
         return query.getResultList();
     }
 

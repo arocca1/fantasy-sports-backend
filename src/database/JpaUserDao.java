@@ -18,7 +18,7 @@ public class JpaUserDao extends Dao<User> {
 
     @Override
     public List<User> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM users e");
+        Query query = entityManager.createQuery("SELECT e FROM User e");
         return query.getResultList();
     }
 

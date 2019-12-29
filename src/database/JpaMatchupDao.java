@@ -15,7 +15,7 @@ public class JpaMatchupDao extends Dao<Matchup> {
 
     @Override
     public List<Matchup> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM matchups e");
+        Query query = entityManager.createQuery("SELECT e FROM Matchup e");
         return query.getResultList();
     }
 

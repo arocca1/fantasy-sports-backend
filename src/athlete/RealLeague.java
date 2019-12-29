@@ -1,9 +1,11 @@
 package athlete;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,10 +14,10 @@ import javax.persistence.Table;
 public class RealLeague {
 	public static long NO_INDIVIDUAL_LEAGUE = -1;
 	@Id
-	@GeneratedValue
-	private int id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String name;
-	private Date createdAt;
+	private Date createdAt = Calendar.getInstance().getTime();
 	private long sportId;
 
 	public RealLeague() { }
@@ -41,7 +43,7 @@ public class RealLeague {
 		this.sportId = sportId;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 

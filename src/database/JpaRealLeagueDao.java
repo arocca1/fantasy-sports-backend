@@ -15,7 +15,7 @@ public class JpaRealLeagueDao extends Dao<RealLeague> {
 
     @Override
     public List<RealLeague> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM real_leagues e");
+        Query query = entityManager.createQuery("SELECT e FROM RealLeague e");
         return query.getResultList();
     }
 

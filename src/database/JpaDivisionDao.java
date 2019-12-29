@@ -15,7 +15,7 @@ public class JpaDivisionDao extends Dao<Division> {
 
     @Override
     public List<Division> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM divisions e");
+        Query query = entityManager.createQuery("SELECT e FROM Division e");
         return query.getResultList();
     }
 

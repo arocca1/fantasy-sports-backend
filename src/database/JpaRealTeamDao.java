@@ -15,7 +15,7 @@ public class JpaRealTeamDao extends Dao<RealTeam> {
 
     @Override
     public List<RealTeam> getAll() {
-        Query query = entityManager.createQuery("SELECT e FROM real_teams e");
+        Query query = entityManager.createQuery("SELECT e FROM RealTeam e");
         return query.getResultList();
     }
 

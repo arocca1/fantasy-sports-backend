@@ -1,9 +1,11 @@
 package fantasyuser;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -12,11 +14,11 @@ import javax.persistence.Table;
 public class Team {
 	public static long NO_TEAM_ID = -1;
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
 	// TODO add season
-	private Date createdAt;
+	private Date createdAt = Calendar.getInstance().getTime();
 	private long userId;
 	private long divisionId;
 	private long leagueId;

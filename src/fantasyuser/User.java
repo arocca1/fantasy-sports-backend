@@ -1,9 +1,11 @@
 package fantasyuser;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,13 +13,18 @@ import javax.persistence.Table;
 @Table( name = "USERS" )
 public class User {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
 	private String realName;
-	private Date createdAt;
+	private Date createdAt = Calendar.getInstance().getTime();
 
 	public User() { }
+
+	public User(String name, String realName) {
+		this.name = name;
+		this.realName = realName;
+	}
 
 	public String getName() {
 		return name;
