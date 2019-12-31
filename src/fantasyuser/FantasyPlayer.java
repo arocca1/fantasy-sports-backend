@@ -1,4 +1,4 @@
-package athlete;
+package fantasyuser;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -11,44 +11,41 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import athlete.Player;
+
 @Entity
-@Table( name = "PLAYERS" )
-public class Player {
+@Table( name = "FANTASY_PLAYERS" )
+public class FantasyPlayer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	private String name;
-	// TODO add retired / active
 	private Date createdAt = Calendar.getInstance().getTime();
 	@ManyToOne
-	@JoinColumn(name = "realTeamId", nullable = false)
-	private RealTeam realTeam;
+	@JoinColumn(name = "playerId", nullable = true)
+	private Player player;
+	@ManyToOne
+	@JoinColumn(name = "teamId", nullable = true)
+	private Team team;
 
-	public Player() { }
-
-	public Player(String name, RealTeam realTeam) {
-		this.name = name;
-		this.realTeam = realTeam;
+	public FantasyPlayer(Player player, Team team) {
+		this.player = player;
+		this.team = team;
 	}
 
-	public String getName() {
-		return name;
+	public Team getTeam() {
+		return team;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public RealTeam getRealTeam() {
-		return realTeam;
-	}
-
-	public void setRealTeam(RealTeam realTeam) {
-		this.realTeam = realTeam;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 
 	public long getId() {
 		return id;
+	}
+
+	public Player getPlayer() {
+		return player;
 	}
 
 	public Date getCreatedAt() {

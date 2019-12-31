@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,9 +19,17 @@ public class Matchup {
 	private long id;
 	private Date matchupDate;
 	private Date createdAt = Calendar.getInstance().getTime();
+	@OneToOne(targetEntity = Team.class)
+    @JoinColumn(name="homeTeamId", nullable=false)
 	private Team homeTeam;
+	@OneToOne(targetEntity = Team.class)
+    @JoinColumn(name="awayTeamId", nullable=false)
 	private Team awayTeam;
+	@OneToOne(targetEntity = Team.class)
+    @JoinColumn(name="winningTeamId", nullable=true)
 	private Team winningTeam;
+	@OneToOne(targetEntity = Team.class)
+    @JoinColumn(name="losingTeamId", nullable=true)
 	private Team losingTeam;
 
 	public Matchup() { }

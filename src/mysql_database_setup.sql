@@ -3,6 +3,7 @@ CREATE DATABASE fantasy_sports;
 USE fantasy_sports;
 
 DROP TABLE IF EXISTS weekly_scores;
+DROP TABLE IF EXISTS fantasy_players;
 DROP TABLE IF EXISTS weeks;
 DROP TABLE IF EXISTS seasons;
 DROP TABLE IF EXISTS players;
@@ -119,11 +120,7 @@ CREATE TABLE players (
 	realTeamId BIGINT,
 	CONSTRAINT fk_players_realTeamId
 	FOREIGN KEY (realTeamId)
-		REFERENCES real_teams(id),
-	teamId BIGINT NOT NULL,
-	CONSTRAINT fk_players_teamId
-	FOREIGN KEY (teamId)
-		REFERENCES teams(id)
+		REFERENCES real_teams(id)
 ) ENGINE=INNODB;
 
 CREATE TABLE seasons (
@@ -149,6 +146,19 @@ CREATE TABLE weeks (
 		REFERENCES seasons(id)
 ) ENGINE=INNODB;
 
+CREATE TABLE fantasy_players (
+	id BIGINT AUTO_INCREMENT PRIMARY KEY,
+	createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	playerId BIGINT NOT NULL,
+	CONSTRAINT fk_fantasy_players_playerId
+	FOREIGN KEY (playerId)
+		REFERENCES players(id),
+	teamId BIGINT NOT NULL,
+	CONSTRAINT fk_fantasy_players_teamId
+	FOREIGN KEY (teamId)
+		REFERENCES teams(id)
+) ENGINE=INNODB;
+
 CREATE TABLE weekly_scores (
 	id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	projectedScore DOUBLE NOT NULL DEFAULT 0.0,
@@ -159,8 +169,8 @@ CREATE TABLE weekly_scores (
 	CONSTRAINT fk_weekly_scores_weekId
 	FOREIGN KEY (weekId)
 		REFERENCES weeks(id),
-	playerId BIGINT NOT NULL,
-	CONSTRAINT ffk_weekly_scoress_playerId
-	FOREIGN KEY (playerId)
-		REFERENCES players(id)
+	fantasyPlayerId BIGINT NOT NULL,
+	CONSTRAINT fk_weekly_scoress_fantasyPlayerId
+	FOREIGN KEY (fantasyPlayerId)
+		REFERENCES fantasy_players(id)
 ) ENGINE=INNODB;

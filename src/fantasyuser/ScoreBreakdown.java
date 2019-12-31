@@ -14,7 +14,7 @@ public class ScoreBreakdown implements Serializable {
 	private Map<String, Map<String, Double>> playerTypeToStatToScore;
 
 	// TODO probably put this in the database in some form. This class should be a future database table
-	private static Map<String, Map<String, Double>> NFL_SCORING;
+	private static final Map<String, Map<String, Double>> NFL_SCORING;
 	static {
 		NFL_SCORING = new HashMap<String, Map<String, Double>>();
 		// offensive player scoring, like QB, TE, RB, WR
@@ -42,6 +42,11 @@ public class ScoreBreakdown implements Serializable {
 		defensiveScoring.put("fumble", 2.0);
 		defensiveScoring.put("sack", 2.0);
 		defensiveScoring.put("touchdown", 6.0);
+	}
+	public static final ScoreBreakdown NFL_SCORING_SINGLETON = new ScoreBreakdown(NFL_SCORING);
+
+	public ScoreBreakdown(Map<String, Map<String, Double>> playerTypeToStatToScore) {
+		this.playerTypeToStatToScore = playerTypeToStatToScore;
 	}
 
 	public double calculateScore(ScoreBreakdown breakdown) {

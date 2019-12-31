@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import athlete.RealLeague;
@@ -20,7 +22,11 @@ public class League {
 	private long id;
 	private String name;
 	private Date createdAt = Calendar.getInstance().getTime();
+	@ManyToOne
+    @JoinColumn(name="sportId", nullable=false)
 	private Sport sport;
+	@ManyToOne
+    @JoinColumn(name="realLeagueId", nullable=true)
 	private RealLeague realLeague;
 
 	public League() { }
