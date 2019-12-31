@@ -12,27 +12,30 @@ import javax.persistence.Table;
 @Entity
 @Table( name = "TEAMS" )
 public class Team {
-	public static long NO_TEAM_ID = -1;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
 	// TODO add season
 	private Date createdAt = Calendar.getInstance().getTime();
-	private long userId;
-	private long divisionId;
-	private long leagueId;
+	private User user;
+	private Division division;
+	private League league;
 
 	public Team() { }
 
-	public Team(String name, long divisionId, long leagueId) {
+	public Team(String name, User user, Division division, League league) {
 		this.name = name;
-		this.divisionId = divisionId;
-		this.leagueId = leagueId;
+		this.division = division;
+		this.league = league;
 	}
 
-	public Team(String name, long leagueId) {
-		this(name, Division.NO_DIVISION_ID, leagueId);
+	public Team(String name, User user, League league) {
+		this(name, user, null, league);
+	}
+
+	public Team(User user, League league) {
+		this(user.getName(), user, league);
 	}
 
 	public String getName() {
@@ -43,28 +46,24 @@ public class Team {
 		this.name = name;
 	}
 
-	public long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public long getDivisionId() {
-		return divisionId;
+	public Division getDivision() {
+		return division;
 	}
 
-	public void setDivisionId(long divisionId) {
-		this.divisionId = divisionId;
+	public void setDivision(Division division) {
+		this.division = division;
 	}
 
-	public long getLeagueId() {
-		return leagueId;
-	}
-
-	public void setLeagueId(long leagueId) {
-		this.leagueId = leagueId;
+	public League getLeague() {
+		return league;
 	}
 
 	public long getId() {

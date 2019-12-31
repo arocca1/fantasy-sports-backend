@@ -24,14 +24,14 @@ public class Season {
 	// This is better served as a separate column, but JSON is better currently to handle all sports
 	private ScoreBreakdown scoringBreakdown;
 	private Date createdAt = Calendar.getInstance().getTime();
-	private long leagueId;
+	private League league;
 
 	public Season() { }
 
-	public Season(int year, int numWeeks, ScoreBreakdown scoringBreakdown, long leagueId) {
+	public Season(int year, int numWeeks, ScoreBreakdown scoringBreakdown, League league) {
 		this.year = year;
 		this.numWeeks = numWeeks;
 		this.scoringBreakdown = scoringBreakdown;
-		this.leagueId = leagueId;
+		this.league = league;
 	}
 }

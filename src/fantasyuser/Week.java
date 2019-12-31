@@ -18,13 +18,13 @@ public class Week {
 	private int num;
 	private Date startDate;
 	private Date createdAt = Calendar.getInstance().getTime();
-	private long seasonId;
+	private Season season;
 
 	public Week() { }
 
-	public Week(int num, Date startDate, long seasonId) {
+	public Week(int num, Date startDate, Season season) {
 		this.num = num;
 		this.startDate = startDate;
-		this.seasonId = seasonId;
+		this.season = season;
 	}
 }

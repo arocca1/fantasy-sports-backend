@@ -17,13 +17,13 @@ public class RealTeam {
 	private long id;
 	private String name;
 	private Date createdAt = Calendar.getInstance().getTime();
-	private long realLeagueId;
+	private RealLeague realLeague;
 
 	public RealTeam() { }
 
-	public RealTeam(String name, long realLeagueId) {
+	public RealTeam(String name, RealLeague realLeague) {
 		this.name = name;
-		this.realLeagueId = realLeagueId;
+		this.realLeague = realLeague;
 	}
 
 	public String getName() {
@@ -34,12 +34,8 @@ public class RealTeam {
 		this.name = name;
 	}
 
-	public long getRealLeagueId() {
-		return realLeagueId;
-	}
-
-	public void setRealLeagueId(long realLeagueId) {
-		this.realLeagueId = realLeagueId;
+	public RealLeague getRealLeague() {
+		return realLeague;
 	}
 
 	public long getId() {

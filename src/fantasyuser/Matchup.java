@@ -17,17 +17,17 @@ public class Matchup {
 	private long id;
 	private Date matchupDate;
 	private Date createdAt = Calendar.getInstance().getTime();
-	private long homeTeamId;
-	private long awayTeamId;
-	private long winningTeamId;
-	private long losingTeamId;
+	private Team homeTeam;
+	private Team awayTeam;
+	private Team winningTeam;
+	private Team losingTeam;
 
 	public Matchup() { }
 
-	public Matchup(Date matchupDate, long homeTeamId, long awayTeamId) {
+	public Matchup(Date matchupDate, Team homeTeam, Team awayTeam) {
 		this.matchupDate = matchupDate;
-		this.homeTeamId = homeTeamId;
-		this.awayTeamId = awayTeamId;
+		this.homeTeam = homeTeam;
+		this.awayTeam = awayTeam;
 	}
 
 	public Date getMatchupDate() {
@@ -38,36 +38,28 @@ public class Matchup {
 		this.matchupDate = matchupDate;
 	}
 
-	public long getHomeTeamId() {
-		return homeTeamId;
+	public Team getWinningTeam() {
+		return winningTeam;
 	}
 
-	public void setHomeTeamId(long homeTeamId) {
-		this.homeTeamId = homeTeamId;
+	public void setWinningTeam(Team winningTeam) {
+		this.winningTeam = winningTeam;
 	}
 
-	public long getAwayTeamId() {
-		return awayTeamId;
+	public Team getLosingTeam() {
+		return losingTeam;
 	}
 
-	public void setAwayTeamId(long awayTeamId) {
-		this.awayTeamId = awayTeamId;
+	public void setLosingTeam(Team losingTeam) {
+		this.losingTeam = losingTeam;
 	}
 
-	public long getWinningTeamId() {
-		return winningTeamId;
+	public Team getHomeTeam() {
+		return homeTeam;
 	}
 
-	public void setWinningTeamId(long winningTeamId) {
-		this.winningTeamId = winningTeamId;
-	}
-
-	public long getLosingTeamId() {
-		return losingTeamId;
-	}
-
-	public void setLosingTeamId(long losingTeamId) {
-		this.losingTeamId = losingTeamId;
+	public Team getAwayTeam() {
+		return awayTeam;
 	}
 
 	public long getId() {

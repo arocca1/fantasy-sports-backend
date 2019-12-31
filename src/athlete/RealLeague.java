@@ -12,19 +12,18 @@ import javax.persistence.Table;
 @Entity
 @Table( name = "REAL_LEAGUES" )
 public class RealLeague {
-	public static long NO_INDIVIDUAL_LEAGUE = -1;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
 	private Date createdAt = Calendar.getInstance().getTime();
-	private long sportId;
+	private Sport sport;
 
 	public RealLeague() { }
 
-	public RealLeague(String name, long sportId) {
+	public RealLeague(String name, Sport sport) {
 		this.name = name;
-		this.sportId = sportId;
+		this.sport = sport;
 	}
 
 	public String getName() {
@@ -35,12 +34,8 @@ public class RealLeague {
 		this.name = name;
 	}
 
-	public long getSportId() {
-		return sportId;
-	}
-
-	public void setSportId(long sportId) {
-		this.sportId = sportId;
+	public Sport getSport() {
+		return sport;
 	}
 
 	public long getId() {

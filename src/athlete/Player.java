@@ -20,19 +20,19 @@ public class Player {
 	private String name;
 	// TODO add retired / active
 	private Date createdAt = Calendar.getInstance().getTime();
-	private long realTeamId;
-	private long teamId;
+	private RealTeam realTeam;
+	private Team team;
 
 	public Player() { }
 
-	public Player(String name, long realTeamId, long teamId) {
+	public Player(String name, RealTeam realTeam, Team team) {
 		this.name = name;
-		this.realTeamId = realTeamId;
-		this.teamId = teamId;
+		this.realTeam = realTeam;
+		this.team = team;
 	}
 
-	public Player(String name, long realTeamId) {
-		this(name, realTeamId, Team.NO_TEAM_ID);
+	public Player(String name, RealTeam realTeam) {
+		this(name, realTeam, null);
 	}
 
 	public String getName() {
@@ -43,20 +43,20 @@ public class Player {
 		this.name = name;
 	}
 
-	public long getRealTeamId() {
-		return realTeamId;
+	public RealTeam getRealTeam() {
+		return realTeam;
 	}
 
-	public void setRealTeamId(long realTeamId) {
-		this.realTeamId = realTeamId;
+	public void setRealTeam(RealTeam realTeam) {
+		this.realTeam = realTeam;
 	}
 
-	public long getTeamId() {
-		return teamId;
+	public Team getTeam() {
+		return team;
 	}
 
-	public void setTeamId(long teamId) {
-		this.teamId = teamId;
+	public void setTeam(Team team) {
+		this.team = team;
 	}
 
 	public long getId() {

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import athlete.Player;
 import database.ScoreBreakdownToStringConverter;
 
 @Entity
@@ -24,17 +25,17 @@ public class WeeklyScore {
 	// This is better served as a separate column, but JSON is better currently to handle all sports
 	private ScoreBreakdown scoringBreakdown;
 	private Date createdAt = Calendar.getInstance().getTime();
-	private long weekId;
-	private long playerId;
+	private Week week;
+	private Player player;
 
 	public WeeklyScore() { }
 
-	public WeeklyScore(double projectedScore, double actualScore, ScoreBreakdown scoringBreakdown, long weekId,
-			long playerId) {
+	public WeeklyScore(double projectedScore, double actualScore, ScoreBreakdown scoringBreakdown, Week week,
+			Player player) {
 		this.projectedScore = projectedScore;
 		this.actualScore = actualScore;
 		this.scoringBreakdown = scoringBreakdown;
-		this.weekId = weekId;
-		this.playerId = playerId;
+		this.week = week;
+		this.player = player;
 	}
 }

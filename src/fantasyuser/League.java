@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import athlete.RealLeague;
+import athlete.Sport;
 
 @Entity
 @Table( name = "leagues" )
@@ -19,20 +20,20 @@ public class League {
 	private long id;
 	private String name;
 	private Date createdAt = Calendar.getInstance().getTime();
-	private long sportId;
-	private long realLeagueId;
+	private Sport sport;
+	private RealLeague realLeague;
 
 	public League() { }
 
-	public League(String name, long sportId, long realLeagueId) {
+	public League(String name, Sport sport, RealLeague realLeague) {
 		this.name = name;
-		this.sportId = sportId;
-		this.realLeagueId = realLeagueId;
+		this.sport = sport;
+		this.realLeague = realLeague;
 	}
 
 	// Imagine doing a soccer fantasy league that we don't want to limit by individual real league
-	public League(String name, long sportId) {
-		this(name, sportId, RealLeague.NO_INDIVIDUAL_LEAGUE);
+	public League(String name, Sport sport) {
+		this(name, sport, null);
 	}
 
 	public String getName() {
@@ -43,20 +44,12 @@ public class League {
 		this.name = name;
 	}
 
-	public long getSportId() {
-		return sportId;
+	public Sport getSport() {
+		return sport;
 	}
 
-	public void setSportId(long sportId) {
-		this.sportId = sportId;
-	}
-
-	public long getRealLeagueId() {
-		return realLeagueId;
-	}
-
-	public void setRealLeagueId(long realLeagueId) {
-		this.realLeagueId = realLeagueId;
+	public RealLeague getRealLeague() {
+		return realLeague;
 	}
 
 	public long getId() {
