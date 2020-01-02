@@ -33,4 +33,13 @@ public class JpaSeasonDao extends Dao<Season> {
     public void delete(Season season) {
         executeInsideTransaction(entityManager -> entityManager.remove(season));
     }
+
+    public Optional<Season> get(long leagueId, int year) {
+    	String q = "SELECT s FROM Season s JOIN s.league l WHERE l.id = :leagueId AND s.year = :year";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("leagueId", leagueId);
+    	query.setParameter("year", year);
+    	List<Season> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
 }

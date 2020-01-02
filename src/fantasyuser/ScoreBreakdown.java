@@ -70,4 +70,10 @@ public class ScoreBreakdown implements Serializable {
 	public Map<String, Map<String, Double>> getPlayerTypeToStatToScore() {
 		return playerTypeToStatToScore;
 	}
+
+	public void updateStatScore(String playerType, String stat, double scoreValue) {
+		Map<String, Double> individualPlayerTypeScoring = playerTypeToStatToScore.getOrDefault(playerType, new HashMap<String, Double>());
+		individualPlayerTypeScoring.put(stat, scoreValue);
+		playerTypeToStatToScore.put(playerType, individualPlayerTypeScoring);
+	}
 }

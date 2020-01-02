@@ -38,4 +38,36 @@ public class Season {
 		this.scoringBreakdown = scoringBreakdown;
 		this.league = league;
 	}
+
+	public int getNumWeeks() {
+		return numWeeks;
+	}
+
+	public void setNumWeeks(int numWeeks) {
+		this.numWeeks = numWeeks;
+	}
+
+	public ScoreBreakdown getScoringBreakdown() {
+		return scoringBreakdown;
+	}
+
+	public void setScoringBreakdown(ScoreBreakdown scoringBreakdown) {
+		this.scoringBreakdown = scoringBreakdown;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public League getLeague() {
+		return league;
+	}
 }
