@@ -69,4 +69,12 @@ public class PlayerTeamRecord {
 	public Week getWeek() {
 		return week;
 	}
+
+	public void makeStarter() {
+		setStarter(true);
+	}
+
+	public void moveToBench() {
+		setStarter(false);
+	}
 }

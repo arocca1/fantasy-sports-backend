@@ -31,4 +31,8 @@ public class Week {
 		this.startDate = startDate;
 		this.season = season;
 	}
+
+	public long getId() {
+		return id;
+	}
 }

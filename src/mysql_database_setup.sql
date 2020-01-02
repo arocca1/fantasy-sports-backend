@@ -211,9 +211,5 @@ CREATE TABLE season_lineup_position_requirements (
 	positionId BIGINT NOT NULL,
 	CONSTRAINT fk_season_lineup_position_requirements_positionId
 	FOREIGN KEY (positionId)
-		REFERENCES positions(id),
-	weekId BIGINT NOT NULL,
-	CONSTRAINT fk_season_lineup_position_requirements_weekId
-	FOREIGN KEY (weekId)
-		REFERENCES weeks(id)
+		REFERENCES positions(id)
 ) ENGINE=INNODB;

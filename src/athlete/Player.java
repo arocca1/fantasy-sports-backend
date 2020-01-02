@@ -57,4 +57,8 @@ public class Player {
 	public Date getCreatedAt() {
 		return createdAt;
 	}
+
+	public Position getPosition() {
+		return position;
+	}
 }

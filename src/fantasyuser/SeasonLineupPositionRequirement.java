@@ -20,6 +20,7 @@ public class SeasonLineupPositionRequirement {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private int num;
 	private Date createdAt = Calendar.getInstance().getTime();
 	@ManyToOne
     @JoinColumn(name="seasonId", nullable=false)
@@ -27,19 +28,11 @@ public class SeasonLineupPositionRequirement {
 	@ManyToOne
     @JoinColumn(name="positionId", nullable=false)
 	private Position position;
-	@ManyToOne
-    @JoinColumn(name="weekId", nullable=false)
-	private Week week;
 
-	public SeasonLineupPositionRequirement(Season season, Position position, Week week) {
+	public SeasonLineupPositionRequirement(Season season, Position position) {
 		super();
 		this.season = season;
 		this.position = position;
-		this.week = week;
-	}
-
-	public Week getWeek() {
-		return week;
 	}
 
 	public long getId() {
@@ -56,5 +49,13 @@ public class SeasonLineupPositionRequirement {
 
 	public Position getPosition() {
 		return position;
+	}
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
 	}
 }
