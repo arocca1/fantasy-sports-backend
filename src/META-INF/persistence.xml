@@ -17,6 +17,7 @@
         <class>athlete.RealTeam</class>
         <class>athlete.RealLeague</class>
  		<class>athlete.Player</class>
+		<class>athlete.Position</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
         <property name="hibernate.dialect" value="DIALECT"/>

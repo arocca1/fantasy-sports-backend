@@ -12,26 +12,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table( name = "PLAYERS" )
-public class Player {
+@Table( name = "POSITIONS" )
+public class Position {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String name;
-	// TODO add retired / active
 	private Date createdAt = Calendar.getInstance().getTime();
 	@ManyToOne
-	@JoinColumn(name = "positionId", nullable = false)
-	private Position position;
-	@ManyToOne
-	@JoinColumn(name = "realTeamId", nullable = false)
-	private RealTeam realTeam;
+	@JoinColumn(name = "sportId", nullable = false)
+	private Sport sport;
 
-	public Player() { }
-
-	public Player(String name, RealTeam realTeam) {
+	public Position(String name, Sport sport) {
 		this.name = name;
-		this.realTeam = realTeam;
+		this.sport = sport;
 	}
 
 	public String getName() {
@@ -42,19 +36,15 @@ public class Player {
 		this.name = name;
 	}
 
-	public RealTeam getRealTeam() {
-		return realTeam;
-	}
-
-	public void setRealTeam(RealTeam realTeam) {
-		this.realTeam = realTeam;
-	}
-
 	public long getId() {
 		return id;
 	}
 
 	public Date getCreatedAt() {
 		return createdAt;
+	}
+
+	public Sport getSport() {
+		return sport;
 	}
 }
