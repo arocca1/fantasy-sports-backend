@@ -19,12 +19,12 @@
  		<class>athlete.Player</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
-        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
+        <property name="hibernate.dialect" value="DIALECT"/>
         <property name="hibernate.hbm2ddl.auto" value="update"/>
         <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fantasy_sports"/>
-        <property name="javax.persistence.jdbc.user" value="web_user"/>
-        <property name="javax.persistence.jdbc.password" value="2yRkktQ=PJXkdKm2+xtryoodGYFU2d^NfYB"/>
+        <property name="javax.persistence.jdbc.url" value="jdbc:DATABASE_DRIVER://localhost:3306/fantasy_sports"/>
+        <property name="javax.persistence.jdbc.user" value="USER"/>
+        <property name="javax.persistence.jdbc.password" value="PASSWORD"/>
     </properties>
 </persistence-unit>
 </persistence>
