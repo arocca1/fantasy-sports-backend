@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import athlete.Player;
 import database.ScoreBreakdownToStringConverter;
 
 @Entity
@@ -30,30 +31,39 @@ public class WeeklyScore {
     @JoinColumn(name="weekId", nullable=false)
 	private Week week;
 	@ManyToOne
-    @JoinColumn(name="fantasyPlayerId", nullable=false)
-	private FantasyPlayer fantasyPlayer;
+    @JoinColumn(name="playerId", nullable=false)
+	private Player player;
+	@ManyToOne
+	@JoinColumn(name = "teamId", nullable = true)
+	private Team team;
 
 	public WeeklyScore() { }
 
 	public WeeklyScore(double projectedScore, double actualScore, ScoreBreakdown scoringBreakdown, Week week,
-			FantasyPlayer fantasyPlayer) {
+			Player player, Team team) {
 		this.projectedScore = projectedScore;
 		this.actualScore = actualScore;
 		this.scoringBreakdown = scoringBreakdown;
 		this.week = week;
-		this.fantasyPlayer = fantasyPlayer;
+		this.player = player;
+		this.team = team;
 	}
 
-	public WeeklyScore(double projectedScore, double actualScore, Week week, FantasyPlayer fantasyPlayer) {
-		this(projectedScore, actualScore, null, week, fantasyPlayer);
+	public WeeklyScore(double projectedScore, double actualScore, ScoreBreakdown scoringBreakdown, Week week,
+			Player player) {
+		this(projectedScore, actualScore, scoringBreakdown, week, player, null);
 	}
 
-	public WeeklyScore(ScoreBreakdown scoringBreakdown, Week week, FantasyPlayer fantasyPlayer) {
-		this(0.0, 0.0, scoringBreakdown, week, fantasyPlayer);
+	public WeeklyScore(double projectedScore, double actualScore, Week week, Player player) {
+		this(projectedScore, actualScore, null, week, player);
 	}
 
-	public WeeklyScore(Week week, FantasyPlayer fantasyPlayer) {
-		this(0.0, 0.0, null, week, fantasyPlayer);
+	public WeeklyScore(ScoreBreakdown scoringBreakdown, Week week, Player player) {
+		this(0.0, 0.0, scoringBreakdown, week, player);
+	}
+
+	public WeeklyScore(Week week, Player player) {
+		this(0.0, 0.0, null, week, player);
 	}
 
 	public double getProjectedScore() {
@@ -92,7 +102,7 @@ public class WeeklyScore {
 		return week;
 	}
 
-	public FantasyPlayer getPlayer() {
-		return fantasyPlayer;
+	public Player getPlayer() {
+		return player;
 	}
 }

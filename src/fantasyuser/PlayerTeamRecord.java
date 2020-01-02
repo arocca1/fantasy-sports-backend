@@ -14,22 +14,26 @@ import javax.persistence.Table;
 import athlete.Player;
 
 @Entity
-@Table( name = "FANTASY_PLAYERS" )
-public class FantasyPlayer {
+@Table( name = "PLAYER_TEAM_RECORDS" )
+public class PlayerTeamRecord {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private Date createdAt = Calendar.getInstance().getTime();
 	@ManyToOne
-	@JoinColumn(name = "playerId", nullable = true)
+	@JoinColumn(name = "playerId", nullable = false)
 	private Player player;
 	@ManyToOne
-	@JoinColumn(name = "teamId", nullable = true)
+	@JoinColumn(name = "teamId", nullable = false)
 	private Team team;
 
-	public FantasyPlayer(Player player, Team team) {
+	public PlayerTeamRecord(Player player, Team team) {
 		this.player = player;
 		this.team = team;
+	}
+
+	public PlayerTeamRecord(Player player) {
+		this(player, null);
 	}
 
 	public Team getTeam() {

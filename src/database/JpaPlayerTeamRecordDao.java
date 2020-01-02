@@ -5,32 +5,32 @@ import java.util.Optional;
 
 import javax.persistence.Query;
 
-import fantasyuser.FantasyPlayer;
+import fantasyuser.PlayerTeamRecord;
 
-public class JpaFantasyPlayerDao extends Dao<FantasyPlayer> {
+public class JpaPlayerTeamRecordDao extends Dao<PlayerTeamRecord> {
     @Override
-    public Optional<FantasyPlayer> get(long id) {
-        return Optional.ofNullable(entityManager.find(FantasyPlayer.class, id));
+    public Optional<PlayerTeamRecord> get(long id) {
+        return Optional.ofNullable(entityManager.find(PlayerTeamRecord.class, id));
     }
 
     @Override
-    public List<FantasyPlayer> getAll() {
+    public List<PlayerTeamRecord> getAll() {
         Query query = entityManager.createQuery("SELECT e FROM FantasyPlayer e");
         return query.getResultList();
     }
 
     @Override
-    public void save(FantasyPlayer player) {
+    public void save(PlayerTeamRecord player) {
         executeInsideTransaction(entityManager -> entityManager.persist(player));
     }
 
     @Override
-    public void update(FantasyPlayer player) {
+    public void update(PlayerTeamRecord player) {
         executeInsideTransaction(entityManager -> entityManager.merge(player));
     }
 
     @Override
-    public void delete(FantasyPlayer player) {
+    public void delete(PlayerTeamRecord player) {
         executeInsideTransaction(entityManager -> entityManager.remove(player));
     }
 }

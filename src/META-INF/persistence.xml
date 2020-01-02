@@ -9,7 +9,7 @@
         <class>fantasyuser.Matchup</class>
         <class>fantasyuser.League</class>
         <class>fantasyuser.Division</class>
-        <class>fantasyuser.FantasyPlayer</class>
+        <class>fantasyuser.PlayerTeamRecord</class>
         <class>fantasyuser.Season</class>
         <class>fantasyuser.Week</class>
         <class>fantasyuser.WeeklyScore</class>
