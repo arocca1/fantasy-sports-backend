@@ -34,10 +34,9 @@ public class JpaWeeklyScoreDao extends Dao<WeeklyScore> {
         executeInsideTransaction(entityManager -> entityManager.remove(weeklyScore));
     }
 
-    public Optional<Double> getProjectedScore(long leagueId, long seasonId, int week, long playerId) {
-    	String q = "SELECT ws.projectedScore FROM WeeklyScore ws JOIN ws.player p JOIN ws.week w JOIN w.season s JOIN s.league l WHERE l.id = :leagueId AND s.id = :seasonId AND w.num = :week AND p.id = :playerId";
+    public Optional<Double> getProjectedScore(long seasonId, int week, long playerId) {
+    	String q = "SELECT ws.projectedScore FROM WeeklyScore ws JOIN ws.player p JOIN ws.week w JOIN w.season s WHERE s.id = :seasonId AND w.num = :week AND p.id = :playerId";
     	Query query = entityManager.createQuery(q);
-    	query.setParameter("leagueId", leagueId);
     	query.setParameter("seasonId", seasonId);
     	query.setParameter("week", week);
     	query.setParameter("playerId", playerId);
@@ -56,10 +55,9 @@ public class JpaWeeklyScoreDao extends Dao<WeeklyScore> {
     	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
     }
 
-    public Optional<Double> getActualScore(long leagueId, long seasonId, int week, long playerId) {
-    	String q = "SELECT ws.actualScore FROM WeeklyScore ws JOIN ws.player p JOIN ws.week w JOIN w.season s JOIN s.league l WHERE l.id = :leagueId AND s.id = :seasonId AND w.num = :week AND p.id = :playerId";
+    public Optional<Double> getActualScore(long seasonId, int week, long playerId) {
+    	String q = "SELECT ws.actualScore FROM WeeklyScore ws JOIN ws.player p JOIN ws.week w JOIN w.season s WHERE s.id = :seasonId AND w.num = :week AND p.id = :playerId";
     	Query query = entityManager.createQuery(q);
-    	query.setParameter("leagueId", leagueId);
     	query.setParameter("seasonId", seasonId);
     	query.setParameter("week", week);
     	query.setParameter("playerId", playerId);
@@ -78,10 +76,9 @@ public class JpaWeeklyScoreDao extends Dao<WeeklyScore> {
     	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
     }
 
-    public List<WeeklyScore> getAllForSeasonAndPlayer(long leagueId, long seasonId, long playerId) {
-    	String q = "SELECT ws FROM WeeklyScore ws JOIN ws.player p JOIN ws.week w JOIN w.season s JOIN s.league l WHERE l.id = :leagueId AND s.id = :seasonId AND p.id = :playerId ORDER BY w.num";
+    public List<WeeklyScore> getAllForSeasonAndPlayer(long seasonId, long playerId) {
+    	String q = "SELECT ws FROM WeeklyScore ws JOIN ws.player p JOIN ws.week w JOIN w.season s WHERE s.id = :seasonId AND p.id = :playerId ORDER BY w.num";
     	Query query = entityManager.createQuery(q);
-    	query.setParameter("leagueId", leagueId);
     	query.setParameter("seasonId", seasonId);
     	query.setParameter("playerId", playerId);
         return query.getResultList();

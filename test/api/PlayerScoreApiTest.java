@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 public class PlayerScoreApiTest {
 	@Test
 	void testProjectedAndActualScoreReturnNothingButQuery() {
-		assertEquals(0.0, PlayerScoringApi.getProjectedScore(1, 1L, 1, 1));
-		assertEquals(0.0, PlayerScoringApi.getActualScore(1, 1L, 1, 1));
+		assertEquals(0.0, PlayerScoringApi.getProjectedScore(1, 1, 1));
+		assertEquals(0.0, PlayerScoringApi.getActualScore(1, 1, 1));
 	}
 
 	@Test
@@ -19,7 +19,7 @@ public class PlayerScoreApiTest {
 
 	@Test
 	void testAllScoresReturnNothingButDoesQuery() {
-		assertEquals(0, PlayerScoringApi.getSeasonScores(1, 1L, 1).size());
+		assertEquals(0, PlayerScoringApi.getSeasonScores(1, 1).size());
 	}
 
 	@Test
