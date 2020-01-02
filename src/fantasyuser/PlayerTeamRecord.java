@@ -19,6 +19,7 @@ public class PlayerTeamRecord {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private boolean isStarter = false;
 	private Date createdAt = Calendar.getInstance().getTime();
 	@ManyToOne
 	@JoinColumn(name = "playerId", nullable = false)
@@ -26,33 +27,46 @@ public class PlayerTeamRecord {
 	@ManyToOne
 	@JoinColumn(name = "teamId", nullable = false)
 	private Team team;
+	@ManyToOne
+	@JoinColumn(name = "weekId", nullable = false)
+	private Week week;
 
-	public PlayerTeamRecord(Player player, Team team) {
+	public PlayerTeamRecord(boolean isStarter, Player player, Team team, Week week) {
+		this.isStarter = isStarter;
 		this.player = player;
 		this.team = team;
+		this.week = week;
 	}
 
-	public PlayerTeamRecord(Player player) {
-		this(player, null);
+	public PlayerTeamRecord(Player player, Team team, Week week) {
+		this(false, player, team, week);
 	}
 
-	public Team getTeam() {
-		return team;
+	public boolean isStarter() {
+		return isStarter;
 	}
 
-	public void setTeam(Team team) {
-		this.team = team;
+	public void setStarter(boolean isStarter) {
+		this.isStarter = isStarter;
 	}
 
 	public long getId() {
 		return id;
 	}
 
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
 	public Player getPlayer() {
 		return player;
 	}
 
-	public Date getCreatedAt() {
-		return createdAt;
+	public Team getTeam() {
+		return team;
+	}
+
+	public Week getWeek() {
+		return week;
 	}
 }

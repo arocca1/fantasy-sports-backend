@@ -4,6 +4,7 @@
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 <persistence-unit name="com.arocca1.fantasy_sports_backend">
     <description>Fantasy Sports Backend</description>
+    <class>fantasyuser.SeasonLineupPositionRequirement</class>
     <class>fantasyuser.User</class>
         <class>fantasyuser.Team</class>
         <class>fantasyuser.Matchup</class>

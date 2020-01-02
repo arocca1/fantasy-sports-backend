@@ -2,7 +2,9 @@ package fantasyuser;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import database.ScoreBreakdownToStringConverter;
@@ -29,6 +32,11 @@ public class Season {
 	@ManyToOne
     @JoinColumn(name="leagueId", nullable=false)
 	private League league;
+	@OneToMany(
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+	private List<SeasonLineupPositionRequirement> lineupRequirements;
 
 	public Season() { }
 
@@ -69,5 +77,9 @@ public class Season {
 
 	public League getLeague() {
 		return league;
+	}
+
+	public List<SeasonLineupPositionRequirement> getLineupRequirements() {
+		return lineupRequirements;
 	}
 }
