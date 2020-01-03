@@ -2,13 +2,16 @@ package fantasyuser;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,10 +28,21 @@ public class Team {
 	@ManyToOne
     @JoinColumn(name="divisionId", nullable=false)
 	private Division division;
-	// TODO add season
 	@ManyToOne
     @JoinColumn(name="leagueId", nullable=false)
 	private League league;
+	@OneToMany(
+        mappedBy = "post",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<WeeklyScore> weeklyScores;
+	@OneToMany(
+        mappedBy = "post",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    private List<PlayerTeamRecord> playerTeamRecords;
 
 	public Team() { }
 

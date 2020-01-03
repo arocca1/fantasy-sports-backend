@@ -1,5 +1,6 @@
 package database;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -91,5 +92,85 @@ public class JpaWeeklyScoreDao extends Dao<WeeklyScore> {
     	query.setParameter("seasonYear", seasonYear);
     	query.setParameter("playerId", playerId);
         return query.getResultList();
+    }
+
+    public Optional<Double> getTeamProjectedScore(long teamId, long weekId) {
+    	String q = "SELECT SUM(ws.projectedScore) FROM WeeklyScore ws JOIN ws.team t JOIN ws.week w JOIN t.playerTeamRecords ptr WHERE t.id = :teamId AND w.id = :weekId AND ptr.isStarter";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("teamId", teamId);
+    	query.setParameter("weekId", weekId);
+    	List<Double> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
+
+    public Optional<Double> getTeamProjectedScore(long teamId, long seasonId, int week) {
+    	String q = "SELECT SUM(ws.projectedScore) FROM WeeklyScore ws JOIN ws.team t JOIN ws.week w JOIN w.season s JOIN t.playerTeamRecords ptr WHERE t.id = :teamId AND s.id = :seasonId AND w.num = :week AND ptr.isStarter";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("teamId", teamId);
+    	query.setParameter("seasonId", seasonId);
+    	query.setParameter("week", week);
+    	List<Double> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
+
+    public Optional<Double> getTeamProjectedScore(long teamId, long leagueId, int seasonYear, int week) {
+    	String q = "SELECT SUM(ws.projectedScore) FROM WeeklyScore ws JOIN ws.team t JOIN ws.week w JOIN w.season s JOIN s.league l JOIN t.playerTeamRecords ptr WHERE t.id = :teamId AND l.id = :leagueId AND s.year = :seasonYear AND w.num = :week AND ptr.isStarter";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("teamId", teamId);
+    	query.setParameter("leagueId", leagueId);
+    	query.setParameter("seasonYear", seasonYear);
+    	query.setParameter("week", week);
+    	List<Double> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
+
+    public Optional<Double> getTeamCurrentWeekProjectedScore(long teamId, long seasonId) {
+    	String q = "SELECT SUM(ws.projectedScore) FROM WeeklyScore ws JOIN ws.team t JOIN ws.week w JOIN w.season s JOIN t.playerTeamRecords ptr WHERE t.id = :teamId AND s.id = :seasonId AND ptr.isStarter AND w.id = (SELECT MIN(w.id) FROM Week w JOIN w.season s WHERE s.id = :seasonId AND s.startDate >= :startDate)";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("teamId", teamId);
+    	query.setParameter("seasonId", seasonId);
+    	query.setParameter("startDate", Calendar.getInstance().getTime());
+    	List<Double> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
+
+    public Optional<Double> getTeamActualScore(long teamId, long weekId) {
+    	String q = "SELECT SUM(ws.actualScore) FROM WeeklyScore ws JOIN ws.team t JOIN ws.week w JOIN t.playerTeamRecords ptr WHERE t.id = :teamId AND w.id = :weekId AND ptr.isStarter";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("teamId", teamId);
+    	query.setParameter("weekId", weekId);
+    	List<Double> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
+
+    public Optional<Double> getTeamActualScore(long teamId, long seasonId, int week) {
+    	String q = "SELECT SUM(ws.actualScore) FROM WeeklyScore ws JOIN ws.team t JOIN ws.week w JOIN w.season s JOIN t.playerTeamRecords ptr WHERE t.id = :teamId AND s.id = :seasonId AND w.num = :week AND ptr.isStarter";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("teamId", teamId);
+    	query.setParameter("seasonId", seasonId);
+    	query.setParameter("week", week);
+    	List<Double> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
+
+    public Optional<Double> getTeamActualScore(long teamId, long leagueId, int seasonYear, int week) {
+    	String q = "SELECT SUM(ws.actualScore) FROM WeeklyScore ws JOIN ws.team t JOIN ws.week w JOIN w.season s JOIN s.league l JOIN t.playerTeamRecords ptr WHERE t.id = :teamId AND l.id = :leagueId AND s.year = :seasonYear AND w.num = :week AND ptr.isStarter";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("teamId", teamId);
+    	query.setParameter("leagueId", leagueId);
+    	query.setParameter("seasonYear", seasonYear);
+    	query.setParameter("week", week);
+    	List<Double> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
+
+    public Optional<Double> getTeamCurrentWeekActualScore(long teamId, long seasonId) {
+    	String q = "SELECT SUM(ws.actualScore) FROM WeeklyScore ws JOIN ws.team t JOIN ws.week w JOIN w.season s JOIN t.playerTeamRecords ptr WHERE t.id = :teamId AND s.id = :seasonId AND ptr.isStarter AND w.id = (SELECT MIN(w.id) FROM Week w JOIN w.season s WHERE s.id = :seasonId AND s.startDate >= :startDate)";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("teamId", teamId);
+    	query.setParameter("seasonId", seasonId);
+    	query.setParameter("startDate", Calendar.getInstance().getTime());
+    	List<Double> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
     }
 }
