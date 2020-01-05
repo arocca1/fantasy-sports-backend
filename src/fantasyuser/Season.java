@@ -25,6 +25,7 @@ public class Season {
 	private long id;
 	private int year;
 	private int numWeeks;
+	private int maxTeamSize;
 	@Convert(converter = ScoreBreakdownToStringConverter.class)
 	// This is better served as a separate column, but JSON is better currently to handle all sports
 	private ScoreBreakdown scoringBreakdown;
@@ -40,9 +41,10 @@ public class Season {
 
 	public Season() { }
 
-	public Season(int year, int numWeeks, ScoreBreakdown scoringBreakdown, League league) {
+	public Season(int year, int numWeeks, int maxTeamSize, ScoreBreakdown scoringBreakdown, League league) {
 		this.year = year;
 		this.numWeeks = numWeeks;
+		this.maxTeamSize = maxTeamSize;
 		this.scoringBreakdown = scoringBreakdown;
 		this.league = league;
 	}
@@ -77,6 +79,14 @@ public class Season {
 
 	public League getLeague() {
 		return league;
+	}
+
+	public int getMaxTeamSize() {
+		return maxTeamSize;
+	}
+
+	public void setMaxTeamSize(int maxTeamSize) {
+		this.maxTeamSize = maxTeamSize;
 	}
 
 	public List<SeasonLineupPositionRequirement> getLineupRequirements() {

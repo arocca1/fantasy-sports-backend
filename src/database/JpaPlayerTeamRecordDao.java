@@ -43,6 +43,14 @@ public class JpaPlayerTeamRecordDao extends Dao<PlayerTeamRecord> {
         return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
     }
 
+    public Optional<PlayerTeamRecord> get(long playerId, long weekId) {
+    	Query query = entityManager.createQuery("SELECT ptr FROM PlayerTeamRecord ptr JOIN ptr.player p JOIN ptr.week w WHERE p.id = :playerId AND w.id = :weekId");
+    	query.setParameter("playerId", playerId);
+    	query.setParameter("weekId", weekId);
+        List<PlayerTeamRecord> results = query.getResultList();
+        return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
+
     public int numStartersInPosition(long teamId, long weekId, long positionId) {
     	Query query = entityManager.createQuery("SELECT COUNT(ptr) FROM PlayerTeamRecord ptr JOIN ptr.player p JOIN p.position pos JOIN ptr.team t JOIN ptr.week w WHERE pos.id = :positionId AND t.id = :teamId AND w.id = :weekId");
     	query.setParameter("positionId", positionId);

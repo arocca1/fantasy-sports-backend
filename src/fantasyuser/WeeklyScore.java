@@ -105,4 +105,12 @@ public class WeeklyScore {
 	public Player getPlayer() {
 		return player;
 	}
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 }

@@ -35,6 +35,16 @@ public class JpaWeeklyScoreDao extends Dao<WeeklyScore> {
         executeInsideTransaction(entityManager -> entityManager.remove(weeklyScore));
     }
 
+    public Optional<WeeklyScore> get(long teamId, long weekId, long playerId) {
+    	String q = "SELECT ws FROM WeeklyScore ws JOIN ws.player p JOIN ws.week w JOIN team t WHERE t.id = :teamId AND w.id = :weekId AND p.id = :playerId";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("teamId", teamId);
+    	query.setParameter("weekId", weekId);
+    	query.setParameter("playerId", playerId);
+    	List<WeeklyScore> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
+    }
+
     public Optional<Double> getProjectedScore(long seasonId, int week, long playerId) {
     	String q = "SELECT ws.projectedScore FROM WeeklyScore ws JOIN ws.player p JOIN ws.week w JOIN w.season s WHERE s.id = :seasonId AND w.num = :week AND p.id = :playerId";
     	Query query = entityManager.createQuery(q);
