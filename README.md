@@ -7,9 +7,15 @@ To set up your persistence settings, you will want to edit src/META-INF/persiste
 You will need to set hibernate.dialect property, javax.persistence.jdbc.url property,
 and the user and password properties. For example, let's say that you are using MySQL.
 The properties in your persistence.xml would look something like this:
-<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
-<property name="hibernate.hbm2ddl.auto" value="update"/>
-<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fantasy_sports"/>
-<property name="javax.persistence.jdbc.user" value="web_user"/>
-<property name="javax.persistence.jdbc.password" value="<SOME PASSWORD>"/>
+<br />
+\<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
+<br />
+\<property name="hibernate.hbm2ddl.auto" value="update"/>
+<br />
+\<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+<br />
+\<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/fantasy_sports"/>
+<br />
+\<property name="javax.persistence.jdbc.user" value="web_user"/>
+<br />
+\<property name="javax.persistence.jdbc.password" value="\<SOME PASSWORD>"/>
