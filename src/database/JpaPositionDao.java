@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.persistence.Query;
 
+import athlete.Player;
 import athlete.Position;
 
 public class JpaPositionDao extends Dao<Position> {
@@ -32,5 +33,12 @@ public class JpaPositionDao extends Dao<Position> {
     @Override
     public void delete(Position position) {
         executeInsideTransaction(entityManager -> entityManager.remove(position));
+    }
+
+    public List<Position> getPositionsForSport(long sportId) {
+    	String q = "SELECT p FROM Position p JOIN p.sport s WHERE s.id = :sportId";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("sportId", sportId);
+    	return query.getResultList();
     }
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.persistence.Query;
 
 import athlete.RealLeague;
+import athlete.Sport;
 
 public class JpaRealLeagueDao extends Dao<RealLeague> {
     @Override
@@ -32,5 +33,14 @@ public class JpaRealLeagueDao extends Dao<RealLeague> {
     @Override
     public void delete(RealLeague realLeague) {
         executeInsideTransaction(entityManager -> entityManager.remove(realLeague));
+    }
+
+    public Optional<RealLeague> get(long sportId, String name) {
+    	String q = "SELECT rl FROM RealLeague rl JOIN rl.sport s WHERE s.id = :sportId AND rl.name = :name";
+    	Query query = entityManager.createQuery(q);
+    	query.setParameter("sportId", sportId);
+    	query.setParameter("name", name);
+    	List<RealLeague> results = query.getResultList();
+    	return results.isEmpty() ? Optional.empty() : Optional.of(results.get(0));
     }
 }
