@@ -29,8 +29,9 @@ public class Player {
 
 	public Player() { }
 
-	public Player(String name, RealTeam realTeam) {
+	public Player(String name, Position position, RealTeam realTeam) {
 		this.name = name;
+		this.position = position;
 		this.realTeam = realTeam;
 	}
 
