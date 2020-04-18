@@ -1,7 +1,7 @@
+Note: Development currently in progress
+
 # fantasy-sports-backend
 The backend of a fantasy sports application. The goal is to support any sport, and support any database/file system backing. This is just a set of APIs. A front-facing app is required separately
-
-Note: Development currently in progress
 
 To set up your persistence settings, you will want to edit src/META-INF/persistence.xml.
 You will need to set hibernate.dialect property, javax.persistence.jdbc.url property,
